@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "universidades",
+  "info": {
+    "singularName": "universidad",
+    "pluralName": "universidades",
+    "displayName": "Universidades",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nombre": {
+      "type": "string",
+      "required": true,
+      "maxLength": 300,
+      "unique": true
+    },
+    "es_univalle": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "sedes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sede.sede",
+      "mappedBy": "universidad"
+    }
+  }
+}

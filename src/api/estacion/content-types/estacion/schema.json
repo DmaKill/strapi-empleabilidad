@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "estaciones",
+  "info": {
+    "singularName": "estacion",
+    "pluralName": "estaciones",
+    "displayName": "Estación",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nombre": {
+      "type": "string",
+      "required": true
+    },
+    "Descripcion": {
+      "type": "text"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "Nombre",
+      "required": true
+    },
+    "documentos": {
+      "type": "component",
+      "repeatable": true,
+      "component": "documentos.documento-estacion"
+    }
+  }
+}

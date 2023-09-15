@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "egresados",
+  "info": {
+    "singularName": "egresado",
+    "pluralName": "egresados",
+    "displayName": "Egresado"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nombres": {
+      "type": "string",
+      "required": true,
+      "maxLength": 200
+    },
+    "Apellidos": {
+      "type": "string",
+      "required": true,
+      "maxLength": 200
+    },
+    "Correo_Univalle": {
+      "type": "email"
+    },
+    "Correo_personal": {
+      "type": "email",
+      "maxLength": 500
+    },
+    "Genero": {
+      "type": "enumeration",
+      "enum": [
+        "MASCULINO",
+        "FEMENINO"
+      ],
+      "required": true,
+      "default": "MASCULINO"
+    },
+    "Fecha_nacimiento": {
+      "type": "date"
+    },
+    "Es_egresado": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "titulo_universitarios": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::titulo-universitario.titulo-universitario",
+      "mappedBy": "egresado"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "egresado"
+    }
+  }
+}

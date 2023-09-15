@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_documentos_documento_estacions",
+  "info": {
+    "displayName": "Documento estación",
+    "icon": "filePdf",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Nombre": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "Descripcion": {
+      "type": "string"
+    },
+    "Documento": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sedes",
+  "info": {
+    "singularName": "sede",
+    "pluralName": "sedes",
+    "displayName": "Sede",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "string",
+      "required": true
+    },
+    "codigo": {
+      "type": "string"
+    },
+    "universidad": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::universidad.universidad",
+      "inversedBy": "sedes"
+    }
+  }
+}
