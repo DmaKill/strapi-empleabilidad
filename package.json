@@ -9,11 +9,13 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/koa": "^2.13.9"
+  },
   "dependencies": {
-    "@strapi/strapi": "4.13.6",
-    "@strapi/plugin-users-permissions": "4.13.6",
     "@strapi/plugin-i18n": "4.13.6",
+    "@strapi/plugin-users-permissions": "4.13.6",
+    "@strapi/strapi": "4.13.6",
     "pg": "8.8.0"
   },
   "author": {
