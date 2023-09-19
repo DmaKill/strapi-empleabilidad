@@ -16,7 +16,8 @@
     "@strapi/plugin-i18n": "4.13.6",
     "@strapi/plugin-users-permissions": "4.13.6",
     "@strapi/strapi": "4.13.6",
-    "pg": "8.8.0"
+    "pg": "8.8.0",
+    "simpl-schema": "^3.4.1"
   },
   "author": {
     "name": "A Strapi developer"

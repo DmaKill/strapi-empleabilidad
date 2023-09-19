@@ -26,9 +26,9 @@ export default class DB {
      * @param table Nombre de la tabla
      * @param data Datos para registrar
      */
-    static async insert(table: string, data: any) {
-        const response = await strapi.db.connection.table(table).insert(data);
-        return response;
+    static async insert(table: TABLES, data: any) {
+        const response: any = await strapi.db.connection.table(table).insert(data);
+        return response.rowCount;
     }
 
 
@@ -47,18 +47,18 @@ export default class DB {
                 query = query.select(select);
             }
 
-            if (Object.keys(where).length > 0) {
+            if (where) {
                 query = query.where(where);
             }
 
             if (join.length > 0) {
                 join.forEach((joinClause) => {
                     const { type, table: joinTable, column1, column2 } = joinClause;
-                    if(type == 'INNER'){
+                    if (type == 'INNER') {
                         query = query.innerJoin(joinTable, column1, column2);
-                    }else if(type == 'LEFT'){
+                    } else if (type == 'LEFT') {
                         query = query.leftJoin(joinTable, column1, column2);
-                    }else{
+                    } else {
                         query = query.rightJoin(joinTable, column1, column2);
                     }
                 });
@@ -71,6 +71,8 @@ export default class DB {
             if (orderBy) {
                 query = query.orderBy(orderBy);
             }
+
+            console.info("CONSULTA EJECUTADA: ", query.toQuery());
 
             // Ejecuta la consulta y devuelve los resultados
             const results = await query;
