@@ -6,8 +6,13 @@ export default {
     routes: [
       {
         method: 'POST',
-        path: '/egresagos/mis-estaciones/create',
-        handler: 'mis-estaciones.create',
+        path: '/egresagos/mis-estaciones/management',
+        handler: 'mis-estaciones.management',
+      },
+      {
+        method: 'POST',
+        path: '/egresagos/mis-estaciones/get',
+        handler: 'mis-estaciones.get',
       }
     ]
   }
