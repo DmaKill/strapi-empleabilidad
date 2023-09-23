@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "programa_univalles",
+  "info": {
+    "singularName": "programa-univalle",
+    "pluralName": "programa-univalles",
+    "displayName": "Programa Univalle"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "codigo": {
+      "type": "uid",
+      "required": true
+    },
+    "Nombre": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "jornada": {
+      "type": "enumeration",
+      "enum": [
+        "DIU",
+        "NOC",
+        "VES"
+      ],
+      "required": true
+    },
+    "titulo_univalles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::titulo-univalle.titulo-univalle",
+      "mappedBy": "programa_univalle"
+    }
+  }
+}

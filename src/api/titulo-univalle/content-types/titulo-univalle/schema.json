@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "titulo_univalles",
+  "info": {
+    "singularName": "titulo-univalle",
+    "pluralName": "titulo-univalles",
+    "displayName": "Titulo Univalle"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "fecha_de_grado": {
+      "type": "date"
+    },
+    "egresado": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::egresado.egresado",
+      "inversedBy": "titulo_univalles"
+    },
+    "programa_univalle": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::programa-univalle.programa-univalle",
+      "inversedBy": "titulo_univalles"
+    },
+    "en_curso": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}

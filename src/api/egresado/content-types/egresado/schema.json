@@ -56,6 +56,12 @@
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user",
       "mappedBy": "egresado"
+    },
+    "titulo_univalles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::titulo-univalle.titulo-univalle",
+      "mappedBy": "egresado"
     }
   }
 }
