@@ -28,12 +28,6 @@
         "VES"
       ],
       "required": true
-    },
-    "titulo_univalles": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::titulo-univalle.titulo-univalle",
-      "mappedBy": "programa_univalle"
     }
   }
 }

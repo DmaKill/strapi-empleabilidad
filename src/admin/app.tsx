@@ -1,5 +1,5 @@
 const favicon = require("./extensions/favicon.png");
-const logo = require("./extensions/favicon.png");
+const logo = require("./extensions/uv_logo.png");
 
 export default {
   config: {

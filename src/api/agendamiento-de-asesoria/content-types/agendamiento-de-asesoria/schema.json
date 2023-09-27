@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "agendamiento_de_asesorias",
+  "info": {
+    "singularName": "agendamiento-de-asesoria",
+    "pluralName": "agendamiento-de-asesorias",
+    "displayName": "Agendamiento de asesoría",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "egresado": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::egresado.egresado",
+      "inversedBy": "agendamiento_de_asesorias"
+    },
+    "estacion": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::estacion.estacion",
+      "inversedBy": "agendamiento_de_asesorias"
+    },
+    "Nota": {
+      "type": "text",
+      "maxLength": 250
+    },
+    "Disponibilidad": {
+      "type": "component",
+      "repeatable": true,
+      "component": "estaciones.cuando"
+    },
+    "fecha_confirmada": {
+      "type": "datetime"
+    },
+    "duracion_en_minutos": {
+      "type": "integer",
+      "default": 30,
+      "required": false,
+      "min": 1
+    }
+  }
+}

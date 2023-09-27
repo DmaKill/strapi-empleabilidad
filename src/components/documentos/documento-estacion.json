@@ -22,6 +22,15 @@
       "allowedTypes": [
         "files"
       ]
+    },
+    "vista_previa": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": false
     }
   }
 }

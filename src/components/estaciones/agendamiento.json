@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_estaciones_agendamientos",
+  "info": {
+    "displayName": "Agendamiento",
+    "icon": "calendar",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Nota": {
+      "type": "text",
+      "maxLength": 250
+    },
+    "Citas": {
+      "displayName": "cuando",
+      "type": "component",
+      "repeatable": true,
+      "component": "estaciones.cuando"
+    }
+  }
+}

@@ -680,15 +680,67 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAgendamientoDeAsesoriaAgendamientoDeAsesoria
+  extends Schema.CollectionType {
+  collectionName: 'agendamiento_de_asesorias';
+  info: {
+    singularName: 'agendamiento-de-asesoria';
+    pluralName: 'agendamiento-de-asesorias';
+    displayName: 'Agendamiento de asesor\u00EDa';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    egresado: Attribute.Relation<
+      'api::agendamiento-de-asesoria.agendamiento-de-asesoria',
+      'manyToOne',
+      'api::egresado.egresado'
+    >;
+    estacion: Attribute.Relation<
+      'api::agendamiento-de-asesoria.agendamiento-de-asesoria',
+      'manyToOne',
+      'api::estacion.estacion'
+    >;
+    Nota: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        maxLength: 250;
+      }>;
+    Disponibilidad: Attribute.Component<'estaciones.cuando', true>;
+    fecha_confirmada: Attribute.DateTime;
+    duracion_en_minutos: Attribute.Integer &
+      Attribute.SetMinMax<{
+        min: 1;
+      }> &
+      Attribute.DefaultTo<30>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::agendamiento-de-asesoria.agendamiento-de-asesoria',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::agendamiento-de-asesoria.agendamiento-de-asesoria',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiEgresadoEgresado extends Schema.CollectionType {
   collectionName: 'egresados';
   info: {
     singularName: 'egresado';
     pluralName: 'egresados';
     displayName: 'Egresado';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     Nombres: Attribute.String &
@@ -713,24 +765,27 @@ export interface ApiEgresadoEgresado extends Schema.CollectionType {
     Es_egresado: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<true>;
-    titulo_universitarios: Attribute.Relation<
-      'api::egresado.egresado',
-      'oneToMany',
-      'api::titulo-universitario.titulo-universitario'
-    >;
+    Tipo_de_documento: Attribute.Enumeration<['CC', 'CE', 'PS', 'TI', 'OT']>;
+    Numero_de_documento: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique;
     user: Attribute.Relation<
       'api::egresado.egresado',
       'oneToOne',
       'plugin::users-permissions.user'
     >;
-    titulo_univalles: Attribute.Relation<
+    agendamiento_de_asesorias: Attribute.Relation<
       'api::egresado.egresado',
       'oneToMany',
-      'api::titulo-univalle.titulo-univalle'
+      'api::agendamiento-de-asesoria.agendamiento-de-asesoria'
     >;
+    Titulos_otras_Universidades: Attribute.Component<
+      'egresados.titulo-otras-universidades',
+      true
+    >;
+    Titulos_Univalle: Attribute.Component<'egresados.titulo-univalle', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::egresado.egresado',
       'oneToOne',
@@ -760,9 +815,16 @@ export interface ApiEstacionEstacion extends Schema.CollectionType {
   attributes: {
     Nombre: Attribute.String & Attribute.Required;
     Descripcion: Attribute.Text;
+    icono: Attribute.Media & Attribute.Required;
+    imagen_de_fondo: Attribute.Media;
     slug: Attribute.UID<'api::estacion.estacion', 'Nombre'> &
       Attribute.Required;
     documentos: Attribute.Component<'documentos.documento-estacion', true>;
+    agendamiento_de_asesorias: Attribute.Relation<
+      'api::estacion.estacion',
+      'oneToMany',
+      'api::agendamiento-de-asesoria.agendamiento-de-asesoria'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -774,6 +836,38 @@ export interface ApiEstacionEstacion extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::estacion.estacion',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiFacultadFacultad extends Schema.CollectionType {
+  collectionName: 'facultads';
+  info: {
+    singularName: 'facultad';
+    pluralName: 'facultads';
+    displayName: 'Facultad';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Nombre: Attribute.String;
+    indetificador: Attribute.UID<'api::facultad.facultad', 'Nombre'> &
+      Attribute.Required;
+    Codigo: Attribute.String & Attribute.Required & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::facultad.facultad',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::facultad.facultad',
       'oneToOne',
       'admin::user'
     > &
@@ -796,11 +890,6 @@ export interface ApiProgramaUnivalleProgramaUnivalle
     codigo: Attribute.UID & Attribute.Required;
     Nombre: Attribute.String & Attribute.Required & Attribute.Unique;
     jornada: Attribute.Enumeration<['DIU', 'NOC', 'VES']> & Attribute.Required;
-    titulo_univalles: Attribute.Relation<
-      'api::programa-univalle.programa-univalle',
-      'oneToMany',
-      'api::titulo-univalle.titulo-univalle'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -846,94 +935,30 @@ export interface ApiSedeSede extends Schema.CollectionType {
   };
 }
 
-export interface ApiTituloUnivalleTituloUnivalle extends Schema.CollectionType {
-  collectionName: 'titulo_univalles';
+export interface ApiSedeUnivalleSedeUnivalle extends Schema.CollectionType {
+  collectionName: 'sedes_univalle';
   info: {
-    singularName: 'titulo-univalle';
-    pluralName: 'titulo-univalles';
-    displayName: 'Titulo Univalle';
+    singularName: 'sede-univalle';
+    pluralName: 'sedes-univalle';
+    displayName: 'Sede Univalle';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   attributes: {
-    fecha_de_grado: Attribute.Date;
-    egresado: Attribute.Relation<
-      'api::titulo-univalle.titulo-univalle',
-      'manyToOne',
-      'api::egresado.egresado'
-    >;
-    programa_univalle: Attribute.Relation<
-      'api::titulo-univalle.titulo-univalle',
-      'manyToOne',
-      'api::programa-univalle.programa-univalle'
-    >;
-    en_curso: Attribute.Boolean &
-      Attribute.Required &
-      Attribute.DefaultTo<false>;
+    Codigo: Attribute.String & Attribute.Required & Attribute.Unique;
+    Nombre: Attribute.String & Attribute.Required & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::titulo-univalle.titulo-univalle',
+      'api::sede-univalle.sede-univalle',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::titulo-univalle.titulo-univalle',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiTituloUniversitarioTituloUniversitario
-  extends Schema.CollectionType {
-  collectionName: 'titulo_universitarios';
-  info: {
-    singularName: 'titulo-universitario';
-    pluralName: 'titulo-universitarios';
-    displayName: 'Titulo Universitario';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    Nombre: Attribute.String & Attribute.Required;
-    fecha_de_grado: Attribute.Date;
-    egresado: Attribute.Relation<
-      'api::titulo-universitario.titulo-universitario',
-      'manyToOne',
-      'api::egresado.egresado'
-    >;
-    sede_universitaria: Attribute.Relation<
-      'api::titulo-universitario.titulo-universitario',
-      'oneToOne',
-      'api::sede.sede'
-    >;
-    Nivel_educativo: Attribute.Enumeration<
-      [
-        'TECNOLOG\u00CDA',
-        'PROFESIONAL',
-        'MAESTR\u00CDA',
-        'DOCTORADO',
-        'ESPECIALIZACI\u00D3N'
-      ]
-    > &
-      Attribute.Required &
-      Attribute.DefaultTo<'TECNOLOG\u00CDA'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::titulo-universitario.titulo-universitario',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::titulo-universitario.titulo-universitario',
+      'api::sede-univalle.sede-univalle',
       'oneToOne',
       'admin::user'
     > &
@@ -1000,12 +1025,13 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::agendamiento-de-asesoria.agendamiento-de-asesoria': ApiAgendamientoDeAsesoriaAgendamientoDeAsesoria;
       'api::egresado.egresado': ApiEgresadoEgresado;
       'api::estacion.estacion': ApiEstacionEstacion;
+      'api::facultad.facultad': ApiFacultadFacultad;
       'api::programa-univalle.programa-univalle': ApiProgramaUnivalleProgramaUnivalle;
       'api::sede.sede': ApiSedeSede;
-      'api::titulo-univalle.titulo-univalle': ApiTituloUnivalleTituloUnivalle;
-      'api::titulo-universitario.titulo-universitario': ApiTituloUniversitarioTituloUniversitario;
+      'api::sede-univalle.sede-univalle': ApiSedeUnivalleSedeUnivalle;
       'api::universidad.universidad': ApiUniversidadUniversidad;
     }
   }

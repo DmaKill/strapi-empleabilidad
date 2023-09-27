@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_egresados_titulo_otras_universidades",
+  "info": {
+    "displayName": "Titulo otras universidades",
+    "icon": "brush"
+  },
+  "options": {},
+  "attributes": {
+    "Titulo": {
+      "type": "string",
+      "required": true
+    },
+    "Fecha_de_grado": {
+      "type": "date"
+    },
+    "sede": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::sede.sede"
+    },
+    "Nivel_educativo": {
+      "type": "enumeration",
+      "enum": [
+        "TECNOLOGÍA",
+        "PROFESIONAL",
+        "MAESTRÍA",
+        "DOCTORADO",
+        "ESPECIALIZACIÓN"
+      ]
+    }
+  }
+}

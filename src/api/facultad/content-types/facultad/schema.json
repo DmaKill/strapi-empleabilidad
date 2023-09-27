@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "facultads",
+  "info": {
+    "singularName": "facultad",
+    "pluralName": "facultads",
+    "displayName": "Facultad"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nombre": {
+      "type": "string"
+    },
+    "indetificador": {
+      "type": "uid",
+      "targetField": "Nombre",
+      "required": true
+    },
+    "Codigo": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}

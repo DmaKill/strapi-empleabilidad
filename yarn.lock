@@ -1436,7 +1436,7 @@
     "@strapi/utils" "4.13.7"
     "fs-extra" "10.0.0"
 
-"@strapi/strapi@^4.3.4", "@strapi/strapi@^4.9.0", "@strapi/strapi@4.13.7":
+"@strapi/strapi@^4.3.4", "@strapi/strapi@^4.4.0", "@strapi/strapi@^4.9.0", "@strapi/strapi@4.13.7":
   "integrity" "sha512-t7HaENDxXJEKg1Lx+9lW5ifWckm5GRAp0tJmHtbzlkgDENpCJJPrcEa8mTiD8JNZrW3JUZV2TeHMTT4znKWleQ=="
   "resolved" "https://registry.npmjs.org/@strapi/strapi/-/strapi-4.13.7.tgz"
   "version" "4.13.7"
@@ -4075,6 +4075,11 @@
   "version" "7.0.1"
   dependencies:
     "to-regex-range" "^5.0.1"
+
+"filter-button@^0.2.2":
+  "integrity" "sha512-ud/03gjz880LFOkCyjVqS5Klw6jBNjeUniMv6Kb9U3FW2d/CTfp8pjiRJteAO2uWNV3La8WdFEaeVwmVwSz0uA=="
+  "resolved" "https://registry.npmjs.org/filter-button/-/filter-button-0.2.2.tgz"
+  "version" "0.2.2"
 
 "finalhandler@1.2.0":
   "integrity" "sha512-5uXcUVftlQMFnWC9qu/svkWv3GTd2PfUhK/3PLkYNAe7FbqJMt3515HaxE6eRL74GdsriiwujiawdaB1BpEISg=="
