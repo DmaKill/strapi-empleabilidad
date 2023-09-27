@@ -19,16 +19,6 @@
     "Descripcion": {
       "type": "text"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "Nombre",
-      "required": true
-    },
-    "documentos": {
-      "type": "component",
-      "repeatable": true,
-      "component": "documentos.documento-estacion"
-    },
     "icono": {
       "allowedTypes": [
         "images"
@@ -44,6 +34,16 @@
       "type": "media",
       "multiple": false,
       "required": false
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "Nombre",
+      "required": true
+    },
+    "documentos": {
+      "type": "component",
+      "repeatable": true,
+      "component": "documentos.documento-estacion"
     },
     "agendamiento_de_asesorias": {
       "type": "relation",
