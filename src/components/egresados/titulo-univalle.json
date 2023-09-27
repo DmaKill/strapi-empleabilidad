@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_egresados_titulo_univalles",
+  "info": {
+    "displayName": "Titulo Univalle",
+    "icon": "feather",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "fecha_de_inicio": {
+      "type": "date",
+      "required": false
+    },
+    "fecha_fin": {
+      "type": "date"
+    },
+    "programa_univalle": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::programa-univalle.programa-univalle"
+    },
+    "sede_univalle": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::sede-univalle.sede-univalle"
+    },
+    "codigo_estudiantil": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}

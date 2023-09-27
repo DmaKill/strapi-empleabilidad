@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sedes_univalle",
+  "info": {
+    "singularName": "sede-univalle",
+    "pluralName": "sedes-univalle",
+    "displayName": "Sede Univalle"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Codigo": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Nombre": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}

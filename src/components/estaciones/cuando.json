@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_estaciones_cuandos",
+  "info": {
+    "displayName": "cuando",
+    "icon": "clock"
+  },
+  "options": {},
+  "attributes": {
+    "fecha_y_hora": {
+      "type": "datetime"
+    },
+    "hasta": {
+      "type": "datetime"
+    },
+    "confirmada": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}

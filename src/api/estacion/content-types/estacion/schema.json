@@ -28,6 +28,28 @@
       "type": "component",
       "repeatable": true,
       "component": "documentos.documento-estacion"
+    },
+    "icono": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "imagen_de_fondo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": false
+    },
+    "agendamiento_de_asesorias": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::agendamiento-de-asesoria.agendamiento-de-asesoria",
+      "mappedBy": "estacion"
     }
   }
 }
