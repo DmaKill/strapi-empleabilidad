@@ -815,11 +815,11 @@ export interface ApiEstacionEstacion extends Schema.CollectionType {
   attributes: {
     Nombre: Attribute.String & Attribute.Required;
     Descripcion: Attribute.Text;
+    icono: Attribute.Media & Attribute.Required;
+    imagen_de_fondo: Attribute.Media;
     slug: Attribute.UID<'api::estacion.estacion', 'Nombre'> &
       Attribute.Required;
     documentos: Attribute.Component<'documentos.documento-estacion', true>;
-    icono: Attribute.Media & Attribute.Required;
-    imagen_de_fondo: Attribute.Media;
     agendamiento_de_asesorias: Attribute.Relation<
       'api::estacion.estacion',
       'oneToMany',
