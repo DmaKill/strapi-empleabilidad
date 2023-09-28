@@ -20,20 +20,20 @@
       "type": "text"
     },
     "icono": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "imagen_de_fondo": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": false
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "slug": {
       "type": "uid",
@@ -50,6 +50,18 @@
       "relation": "oneToMany",
       "target": "api::agendamiento-de-asesoria.agendamiento-de-asesoria",
       "mappedBy": "estacion"
+    },
+    "subestaciones": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::estacion.estacion",
+      "mappedBy": "estacion"
+    },
+    "estacion": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::estacion.estacion",
+      "inversedBy": "subestaciones"
     }
   }
 }

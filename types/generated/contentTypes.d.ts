@@ -825,6 +825,16 @@ export interface ApiEstacionEstacion extends Schema.CollectionType {
       'oneToMany',
       'api::agendamiento-de-asesoria.agendamiento-de-asesoria'
     >;
+    subestaciones: Attribute.Relation<
+      'api::estacion.estacion',
+      'oneToMany',
+      'api::estacion.estacion'
+    >;
+    estacion: Attribute.Relation<
+      'api::estacion.estacion',
+      'manyToOne',
+      'api::estacion.estacion'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
