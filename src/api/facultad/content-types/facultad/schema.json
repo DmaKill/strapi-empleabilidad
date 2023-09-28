@@ -23,6 +23,12 @@
       "type": "string",
       "required": true,
       "unique": true
+    },
+    "programas_univalle": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::programa-univalle.programa-univalle",
+      "mappedBy": "facultad"
     }
   }
 }
