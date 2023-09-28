@@ -868,6 +868,11 @@ export interface ApiFacultadFacultad extends Schema.CollectionType {
     indetificador: Attribute.UID<'api::facultad.facultad', 'Nombre'> &
       Attribute.Required;
     Codigo: Attribute.String & Attribute.Required & Attribute.Unique;
+    programas_univalle: Attribute.Relation<
+      'api::facultad.facultad',
+      'oneToMany',
+      'api::programa-univalle.programa-univalle'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -892,6 +897,7 @@ export interface ApiProgramaUnivalleProgramaUnivalle
     singularName: 'programa-univalle';
     pluralName: 'programa-univalles';
     displayName: 'Programa Univalle';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -900,6 +906,11 @@ export interface ApiProgramaUnivalleProgramaUnivalle
     codigo: Attribute.UID & Attribute.Required;
     Nombre: Attribute.String & Attribute.Required & Attribute.Unique;
     jornada: Attribute.Enumeration<['DIU', 'NOC', 'VES']> & Attribute.Required;
+    facultad: Attribute.Relation<
+      'api::programa-univalle.programa-univalle',
+      'manyToOne',
+      'api::facultad.facultad'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

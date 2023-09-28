@@ -4,7 +4,8 @@
   "info": {
     "singularName": "programa-univalle",
     "pluralName": "programa-univalles",
-    "displayName": "Programa Univalle"
+    "displayName": "Programa Univalle",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -28,6 +29,12 @@
         "VES"
       ],
       "required": true
+    },
+    "facultad": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::facultad.facultad",
+      "inversedBy": "programas_univalle"
     }
   }
 }
