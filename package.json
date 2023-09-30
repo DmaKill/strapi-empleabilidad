@@ -8,6 +8,8 @@
     "backup": "tsc -outDir ./dist && node ./dist/database/init_extra/backup.js",
     "restore": "tsc -outDir ./dist && node ./dist/database/init_extra/restore.js",
     "develop": "npm run backup && strapi develop",
+    "onlydev": "strapi develop",
+    "buildev": "npm run build && npm run develop",
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi"
