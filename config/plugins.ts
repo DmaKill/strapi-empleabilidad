@@ -3,7 +3,11 @@ module.exports = {
     enabled: true,
   },
   "custom-page": {
-    enabled: true,
+    enabled: false,
     resolve: './src/plugins/custom-page'
+  },
+  'review-docs': {
+    enabled: true,
+    resolve: './src/plugins/review-docs'
   },
 };

@@ -7,12 +7,14 @@
   "scripts": {
     "backup": "tsc -outDir ./dist && node ./dist/database/init_extra/backup.js",
     "restore": "tsc -outDir ./dist && node ./dist/database/init_extra/restore.js",
-    "develop": "npm run backup && strapi develop",
+    "develop": "npm run backup && strapi develop --watch-admin",
     "onlydev": "strapi develop",
     "buildev": "npm run build && npm run develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "console": "npm run strapi console --watch-admin",
+    "plugin": "strapi generate plugin"
   },
   "devDependencies": {
     "@types/koa": "^2.13.9",
@@ -27,6 +29,8 @@
     "filter-button": "^0.2.2",
     "pg": "8.8.0",
     "pg-promise": "^11.5.4",
+    "react-icons": "^4.11.0",
+    "react-router-dom": "^5.3.4",
     "simpl-schema": "^3.4.1"
   },
   "author": {
