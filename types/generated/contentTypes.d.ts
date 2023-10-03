@@ -856,6 +856,53 @@ export interface ApiEstacionEstacion extends Schema.CollectionType {
   };
 }
 
+export interface ApiEventoCharlaYOTallerEventoCharlaYOTaller
+  extends Schema.CollectionType {
+  collectionName: 'eventos_charlas_y_o_talleres';
+  info: {
+    singularName: 'evento-charla-y-o-taller';
+    pluralName: 'eventos-charlas-y-o-talleres';
+    displayName: 'Evento charla y/o taller';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Nombre_del_evento: Attribute.String & Attribute.Required;
+    Descripcion: Attribute.RichText;
+    Fecha_y_hora: Attribute.DateTime;
+    Fecha_y_hora_fin: Attribute.DateTime;
+    lugar: Attribute.String;
+    portada: Attribute.Media;
+    numero_limite_de_participantes: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 0;
+      }>;
+    estacion: Attribute.Relation<
+      'api::evento-charla-y-o-taller.evento-charla-y-o-taller',
+      'oneToOne',
+      'api::estacion.estacion'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::evento-charla-y-o-taller.evento-charla-y-o-taller',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::evento-charla-y-o-taller.evento-charla-y-o-taller',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiFacultadFacultad extends Schema.CollectionType {
   collectionName: 'facultads';
   info: {
@@ -1052,6 +1099,7 @@ declare module '@strapi/strapi' {
       'api::agendamiento-de-asesoria.agendamiento-de-asesoria': ApiAgendamientoDeAsesoriaAgendamientoDeAsesoria;
       'api::egresado.egresado': ApiEgresadoEgresado;
       'api::estacion.estacion': ApiEstacionEstacion;
+      'api::evento-charla-y-o-taller.evento-charla-y-o-taller': ApiEventoCharlaYOTallerEventoCharlaYOTaller;
       'api::facultad.facultad': ApiFacultadFacultad;
       'api::programa-univalle.programa-univalle': ApiProgramaUnivalleProgramaUnivalle;
       'api::sede.sede': ApiSedeSede;

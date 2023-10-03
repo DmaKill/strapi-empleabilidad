@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "eventos_charlas_y_o_talleres",
+  "info": {
+    "singularName": "evento-charla-y-o-taller",
+    "pluralName": "eventos-charlas-y-o-talleres",
+    "displayName": "Evento charla y/o taller",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nombre_del_evento": {
+      "type": "string",
+      "required": true
+    },
+    "Descripcion": {
+      "type": "richtext"
+    },
+    "Fecha_y_hora": {
+      "type": "datetime"
+    },
+    "Fecha_y_hora_fin": {
+      "type": "datetime"
+    },
+    "lugar": {
+      "type": "string"
+    },
+    "portada": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "numero_limite_de_participantes": {
+      "type": "integer",
+      "min": 0,
+      "required": true
+    },
+    "estacion": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::estacion.estacion"
+    }
+  }
+}
