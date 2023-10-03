@@ -11,7 +11,7 @@
     "onlydev": "strapi develop",
     "buildev": "npm run build && npm run develop",
     "start": "strapi start",
-    "build": "strapi build",
+    "build": "cd src/plugins/review-docs && npm run build  && cd ../../../ &&  strapi build",
     "strapi": "strapi",
     "console": "npm run strapi console --watch-admin",
     "plugin": "strapi generate plugin"
