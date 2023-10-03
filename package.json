@@ -31,7 +31,8 @@
     "pg-promise": "^11.5.4",
     "react-icons": "^4.11.0",
     "react-router-dom": "^5.3.4",
-    "simpl-schema": "^3.4.1"
+    "simpl-schema": "^3.4.1",
+    "yargs": "^17.7.2"
   },
   "author": {
     "name": "A Strapi developer"

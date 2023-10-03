@@ -24,13 +24,28 @@
       ]
     },
     "vista_previa": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": false
+      ]
+    },
+    "facultades": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::facultad.facultad"
+    },
+    "programas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::programa-univalle.programa-univalle"
+    },
+    "sedes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sede-univalle.sede-univalle"
     }
   }
 }

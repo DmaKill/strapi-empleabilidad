@@ -45,6 +45,26 @@
       "repeatable": true,
       "component": "documentos.documento-estacion"
     },
+    "talleres_o_charlas": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "agendamientos": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "formularios_hp5": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "carga_documento_asesorado": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
     "agendamiento_de_asesorias": {
       "type": "relation",
       "relation": "oneToMany",

@@ -481,6 +481,41 @@ export interface PluginUploadFolder extends Schema.CollectionType {
   };
 }
 
+export interface PluginReviewDocsTask extends Schema.CollectionType {
+  collectionName: 'tasks';
+  info: {
+    singularName: 'task';
+    pluralName: 'tasks';
+    displayName: 'Task';
+  };
+  options: {
+    draftAndPublish: false;
+    comment: '';
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 40;
+      }>;
+    isDone: Attribute.Boolean & Attribute.DefaultTo<false>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::review-docs.task',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::review-docs.task',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginI18NLocale extends Schema.CollectionType {
   collectionName: 'i18n_locale';
   info: {
@@ -823,6 +858,18 @@ export interface ApiEstacionEstacion extends Schema.CollectionType {
     slug: Attribute.UID<'api::estacion.estacion', 'Nombre'> &
       Attribute.Required;
     documentos: Attribute.Component<'documentos.documento-estacion', true>;
+    talleres_o_charlas: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    agendamientos: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    formularios_hp5: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    carga_documento_asesorado: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
     agendamiento_de_asesorias: Attribute.Relation<
       'api::estacion.estacion',
       'oneToMany',
@@ -884,6 +931,21 @@ export interface ApiEventoCharlaYOTallerEventoCharlaYOTaller
       'api::evento-charla-y-o-taller.evento-charla-y-o-taller',
       'oneToOne',
       'api::estacion.estacion'
+    >;
+    facultades: Attribute.Relation<
+      'api::evento-charla-y-o-taller.evento-charla-y-o-taller',
+      'oneToMany',
+      'api::facultad.facultad'
+    >;
+    programas: Attribute.Relation<
+      'api::evento-charla-y-o-taller.evento-charla-y-o-taller',
+      'oneToMany',
+      'api::programa-univalle.programa-univalle'
+    >;
+    sedes: Attribute.Relation<
+      'api::evento-charla-y-o-taller.evento-charla-y-o-taller',
+      'oneToMany',
+      'api::sede-univalle.sede-univalle'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1092,6 +1154,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
+      'plugin::review-docs.task': PluginReviewDocsTask;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;

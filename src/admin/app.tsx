@@ -35,6 +35,18 @@ export default {
         },
       },
     },
+    translations: {
+      en: {
+        "Auth.form.welcome.title": "Welcome to Univalle!",
+        "Auth.form.welcome.subtitle": "Log in to your Admin app",
+      },
+      es: {
+        "Auth.form.welcome.title": "Bienvenido",
+        "Auth.form.welcome.subtitle": "Ruta de la Empleabilidad",
+        "app.components.LeftMenu.navbrand.title": "Dashboard",
+        "app.components.LeftMenu.navbrand.workplace": "Empleabilidad",
+      },
+    }
   },
   bootstrap(app) {
     console.log(app);

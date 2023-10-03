@@ -5,6 +5,7 @@ import path from "path";
 import tablesToRestore from "../../config/customTablesNames";
 import waitOn from "wait-on";
 import colors from "colors";
+import yargs from 'yargs';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -18,6 +19,20 @@ const {
   DATABASE_PASSWORD,
   PORT,
 } = process.env;
+
+
+const argv = yargs
+  .options({
+    port: {
+      alias: 'p',
+      description: 'Puerto para la restauración',
+      type: 'number',
+    },
+  })
+  .help()
+  .alias('help', 'h').argv;
+
+const port = argv.port || PORT || 1337;
 
 // Create a PostgreSQL connection
 const pgp = pgPromise();
@@ -36,11 +51,11 @@ const db = pgp(connectionString);
     console.log(
       colors.bgBlue(
         `REMEMBER that this restore starts only if the server in http://localhost:${
-          PORT || 1337
+          port
         } is running if not RUN IT or 'crt + c' TO CANCEL`
       )
     );
-    await waitOn({ resources: [`http://localhost:${PORT || 1337}`] });
+    await waitOn({ resources: [`http://localhost:${port}`] });
     // Execute the SQL file
     const sqlFilePath = path.resolve(__dirname, `../../../config/extra.sql`); // Replace with the actual path to your SQL file
     const sqlFileContents = fs.readFileSync(sqlFilePath, "utf8");

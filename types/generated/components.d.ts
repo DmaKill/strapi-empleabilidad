@@ -12,6 +12,21 @@ export interface DocumentosDocumentoEstacion extends Schema.Component {
     Descripcion: Attribute.String;
     Documento: Attribute.Media & Attribute.Required;
     vista_previa: Attribute.Media;
+    facultades: Attribute.Relation<
+      'documentos.documento-estacion',
+      'oneToMany',
+      'api::facultad.facultad'
+    >;
+    programas: Attribute.Relation<
+      'documentos.documento-estacion',
+      'oneToMany',
+      'api::programa-univalle.programa-univalle'
+    >;
+    sedes: Attribute.Relation<
+      'documentos.documento-estacion',
+      'oneToMany',
+      'api::sede-univalle.sede-univalle'
+    >;
   };
 }
 
